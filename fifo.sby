@@ -1,0 +1,31 @@
+# Formal verification of the AXI-Stream FIFO.
+#
+# Two tasks:
+#   - bmc:   bounded model checking up to depth 20 (catches shallow bugs)
+#   - prove: k-induction proof -- proves the invariants for ALL reachable
+#            states, not just the first 20 cycles
+#
+# Run:  make formal   (or:  sby -f fifo.sby)
+
+[tasks]
+bmc
+prove
+
+[options]
+mode bmc
+depth 20
+bmc: expect pass
+prove: mode prove
+prove: depth 20
+prove: expect pass
+
+[engines]
+smtbmc z3
+
+[script]
+read -sv axis_fifo.sv fifo_formal_tb.sv
+prep -top fifo_formal_tb
+
+[files]
+rtl/axis_fifo.sv
+tb/fifo_formal_tb.sv
