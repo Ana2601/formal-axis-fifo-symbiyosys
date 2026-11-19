@@ -16,7 +16,9 @@ jobs:
         with:
           python-version: '3.11'
       - name: OSS CAD Suite (Icarus, Verilator, Yosys, SymbiYosys)
-        uses: YosysHQ/oss-cad-suite-build/action@v1
+        uses: YosysHQ/setup-oss-cad-suite@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: System packages
         run: sudo apt-get update && sudo apt-get install -y z3
       - name: Python environment
