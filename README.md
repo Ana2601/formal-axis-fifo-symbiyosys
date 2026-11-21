@@ -4,6 +4,8 @@
 
 Model-checking proof that the AXI-Stream FIFO from [cocotb-axis-fifo-verification](https://github.com/Ana2601/cocotb-axis-fifo-verification) is safe under **every** possible input sequence, not just the ones a testbench happens to drive. M1-native.
 
+![Architecture](docs/diagrams/architecture.svg)
+
 ## What is proven (`tb/fifo_formal_tb.sv`)
 
 | # | Property |
@@ -46,6 +48,12 @@ fifo.sby                  SymbiYosys tasks (bmc, prove)
 ```
 
 See also [writeback-dcache-formal](https://github.com/Ana2601/writeback-dcache-formal) (formally proven write-back cache) and [cdc-async-fifo-formal](https://github.com/Ana2601/cdc-async-fifo-formal) (multi-clock proof of an async FIFO).
+
+## Test run
+
+Output of the CI command (`sby -f fifo.sby`), captured from a local run:
+
+![Test run](docs/screenshots/test_run.svg)
 
 ## Setup
 
